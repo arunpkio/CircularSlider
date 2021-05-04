@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>controls/CircularSlider.qml</file>
         <file>controls/CLabel.qml</file>
         <file>controls/CSlider.qml</file>
     </qresource>
