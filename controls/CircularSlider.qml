@@ -154,7 +154,7 @@ Item {
     QtObject {
         id: internal
 
-        property var centerPt: Qt.point(width / 2, height / 2)
+        property var centerPt: Qt.point(control.width / 2, control.height / 2)
         property real baseRadius: Math.min(control.width, control.height) / 2 - Math.max(control.trackWidth, control.progressWidth) / 2
         property real actualSpanAngle: control.endAngle - control.startAngle
         property color transparentColor: "transparent"
@@ -228,8 +228,8 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            var outerRadius = internal.baseRadius;
-            var innerRadius = internal.baseRadius - control.trackWidth;
+            var outerRadius = Math.min(control.width, control.height)/ 2
+            var innerRadius = outerRadius - control.trackWidth;
             var clickedDistance = (mouseX - internal.centerPt.x) * (mouseX - internal.centerPt.x) + (mouseY - internal.centerPt.y) * (mouseY - internal.centerPt.y);
             var innerRadius2 = (innerRadius * innerRadius);
             var outerRadius2 = (outerRadius * outerRadius);
