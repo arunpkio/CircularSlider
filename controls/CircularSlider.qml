@@ -128,6 +128,19 @@ Item {
     property color handleColor: "#fefefe"
 
     /*!
+      \qmlproperty This property holds the step size. The default value is 0.0
+      The step size determines the amount by which the slider's value is increased and decreased when interacted.
+      The step size is only respected when snap is set to value true
+    */
+    property real stepSize: 0.1
+
+    /*!
+      \qmlproperty This property holds weather the value should be snapped or not.
+      The default value is false.
+    */
+    property bool snap: true
+
+    /*!
       \qmlproperty real CircularSlider::handle
       This property holds the custom handle of the dial.
     */
@@ -146,7 +159,7 @@ Item {
     Binding {
         target: control
         property: "value"
-        value: internal.mapFromValue(startAngle, endAngle, minValue, maxValue, internal.angleProxy)
+        value: control.snap ? internal.snappedValue : internal.mapFromValue(startAngle, endAngle, minValue, maxValue, internal.angleProxy)
         when: internal.setUpdatedValue
         restoreMode: Binding.RestoreBinding
     }
@@ -161,6 +174,7 @@ Item {
         property color trackColor: control.trackColor
         property bool setUpdatedValue: false
         property real angleProxy: control.startAngle
+        property real snappedValue: 0.0
 
         function mapFromValue(inMin, inMax, outMin, outMax, inValue) {
             return (inValue - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
@@ -173,6 +187,13 @@ Item {
             if ((angleVal >= control.startAngle) && (angleVal <= control.endAngle)) {
                 internal.setUpdatedValue = true;
                 internal.angleProxy = Qt.binding(function() { return angleVal; });
+                if(control.snap) {
+                    var mappedValue = internal.mapFromValue(startAngle, endAngle, minValue, maxValue, internal.angleProxy)
+                    var range = control.maxValue - control.minValue
+                    var effectiveStep = 2
+                    var actualVal = control.stepSize * Math.round(mappedValue / control.stepSize)
+                    internal.snappedValue = actualVal
+                }
                 internal.setUpdatedValue = false;
             }
         }
