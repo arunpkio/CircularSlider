@@ -4,5 +4,6 @@
         <file>controls/CircularSlider.qml</file>
         <file>controls/CLabel.qml</file>
         <file>controls/CSlider.qml</file>
+        <file>controls/CCheckBox.qml</file>
     </qresource>
 </RCC>

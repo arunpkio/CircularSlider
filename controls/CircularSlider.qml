@@ -61,6 +61,12 @@ Item {
     property int handleRadius: 11
 
     /*!
+        \qmlproperty CircularSlider::handleVerticalOffset
+        This property defines the offset in which the handle should be placed.
+     */
+    property int handleVerticalOffset: 0
+
+    /*!
         \qmlproperty real CircularSlider::startAngle
         This property holds the start angle of the slider.
         The range is from \c 0 degrees to \c 360 degrees.
@@ -104,32 +110,47 @@ Item {
     readonly property real angle: internal.mapFromValue(control.minValue, control.maxValue, control.startAngle, control.endAngle, control.value)
 
     /*!
-      \qmlproperty enumeration CircularSlider::capStyle
-      This property defines how the end points of lines are drawn. The default value is Qt.RoundCap.
+        \qmlproperty enumeration CircularSlider::capStyle
+        This property defines how the end points of lines are drawn. The default value is Qt.RoundCap.
      */
     property int capStyle: Qt.RoundCap
 
     /*!
-      \qmlproperty real CircularSlider::trackColor
-      This property holds the fill color for the track.
+        \qmlproperty real CircularSlider::trackColor
+        This property holds the fill color for the track.
     */
     property color trackColor: "#505050"
 
     /*!
-      \qmlproperty real CircularSlider::progressColor
-      This property holds the fill color for the progress.
+        \qmlproperty real CircularSlider::progressColor
+        This property holds the fill color for the progress.
     */
     property color progressColor: "#3a4ec4"
 
     /*!
-      \qmlproperty real CircularSlider::handleColor
-      This property holds the fill color for the progress.
+        \qmlproperty real CircularSlider::handleColor
+        This property holds the fill color for the progress.
     */
     property color handleColor: "#fefefe"
 
     /*!
-      \qmlproperty real CircularSlider::handle
-      This property holds the custom handle of the dial.
+        \qmlproperty CircularSlider::stepSize
+        This property holds the step size. The default value is 0.0
+        The step size determines the amount by which the slider's value is increased and decreased when interacted.
+        The step size is only respected when snap is set to value true
+    */
+    property real stepSize: 0.1
+
+    /*!
+        \qmlproperty CircularSlider::snap
+        This property holds weather the value should be snapped or not.
+        The default value is false.
+    */
+    property bool snap: true
+
+    /*!
+        \qmlproperty real CircularSlider::handle
+        This property holds the custom handle of the dial.
     */
     property Component handle: null
 
@@ -146,7 +167,7 @@ Item {
     Binding {
         target: control
         property: "value"
-        value: internal.mapFromValue(startAngle, endAngle, minValue, maxValue, internal.angleProxy)
+        value: control.snap ? internal.snappedValue : internal.mapFromValue(startAngle, endAngle, minValue, maxValue, internal.angleProxy)
         when: internal.setUpdatedValue
         restoreMode: Binding.RestoreBinding
     }
@@ -154,13 +175,14 @@ Item {
     QtObject {
         id: internal
 
-        property var centerPt: Qt.point(width / 2, height / 2)
+        property var centerPt: Qt.point(control.width / 2, control.height / 2)
         property real baseRadius: Math.min(control.width, control.height) / 2 - Math.max(control.trackWidth, control.progressWidth) / 2
         property real actualSpanAngle: control.endAngle - control.startAngle
         property color transparentColor: "transparent"
         property color trackColor: control.trackColor
         property bool setUpdatedValue: false
         property real angleProxy: control.startAngle
+        property real snappedValue: 0.0
 
         function mapFromValue(inMin, inMax, outMin, outMax, inValue) {
             return (inValue - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
@@ -173,6 +195,13 @@ Item {
             if ((angleVal >= control.startAngle) && (angleVal <= control.endAngle)) {
                 internal.setUpdatedValue = true;
                 internal.angleProxy = Qt.binding(function() { return angleVal; });
+                if(control.snap) {
+                    var mappedValue = internal.mapFromValue(startAngle, endAngle, minValue, maxValue, internal.angleProxy)
+                    var range = control.maxValue - control.minValue
+                    var effectiveStep = 2
+                    var actualVal = control.stepSize * Math.round(mappedValue / control.stepSize)
+                    internal.snappedValue = actualVal
+                }
                 internal.setUpdatedValue = false;
             }
         }
@@ -228,8 +257,8 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            var outerRadius = internal.baseRadius;
-            var innerRadius = internal.baseRadius - control.trackWidth;
+            var outerRadius = Math.min(control.width, control.height)/ 2
+            var innerRadius = outerRadius - control.trackWidth;
             var clickedDistance = (mouseX - internal.centerPt.x) * (mouseX - internal.centerPt.x) + (mouseY - internal.centerPt.y) * (mouseY - internal.centerPt.y);
             var innerRadius2 = (innerRadius * innerRadius);
             var outerRadius2 = (outerRadius * outerRadius);
@@ -253,7 +282,7 @@ Item {
         antialiasing: true
         transform: [
             Translate {
-                y: -(Math.min(control.width, control.height) / 2) + Math.max(control.trackWidth, control.progressWidth) / 2
+                y: -(Math.min(control.width, control.height) / 2) + Math.max(control.trackWidth, control.progressWidth) / 2 + control.handleVerticalOffset
             },
             Rotation {
                 angle: control.angle

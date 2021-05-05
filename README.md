@@ -2,7 +2,7 @@
 
 ### A highly customisable circular slider written in QML.
 
-Following are the list of properties of the Circular Slider.
+Following is the list of properties of the Circular Slider.
 
 - trackWidth
 - progressWidth
@@ -19,5 +19,7 @@ Following are the list of properties of the Circular Slider.
 - trackColor
 - progressColor
 - handleColor
+- stepSize
+- snap
 - handle [Component]
 - pressed [readonly]

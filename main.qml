@@ -46,6 +46,7 @@ Window {
         property int handleWidth: 22
         property int handleHeight: 22
         property int handleRadius: 11
+        property int handleVerticalOffset: 0
 
         property real startAngle: 0
         property real endAngle: 360
@@ -55,6 +56,9 @@ Window {
         property color trackColor: "#505050"
         property color progressColor: "#3a4ec4"
         property color handleColor: "#fefefe"
+
+        property bool snap: false
+        property real stepSize: 10
     }
 
     RowLayout {
@@ -75,12 +79,14 @@ Window {
                 handleWidth: sliderProperties.handleWidth
                 handleHeight: sliderProperties.handleHeight
                 handleRadius: sliderProperties.handleRadius
+                handleVerticalOffset: sliderProperties.handleVerticalOffset
 
                 startAngle: sliderProperties.startAngle
                 endAngle: sliderProperties.endAngle
                 minValue: sliderProperties.minValue
                 maxValue: sliderProperties.maxValue
-                value: 30
+                snap: sliderProperties.snap
+                stepSize: 5
 
                 handleColor: sliderProperties.handleColor
                 trackColor: sliderProperties.trackColor
@@ -182,6 +188,18 @@ Window {
                                     to: 50
                                     value: sliderProperties.handleRadius
                                     onValueChanged: sliderProperties.handleRadius = value
+                                }
+
+                                CLabel {
+                                    text: "Handle Offset"
+                                }
+
+                                CSlider {
+                                    Layout.fillWidth: true
+                                    from: -30
+                                    to: 30
+                                    value: sliderProperties.handleVerticalOffset
+                                    onValueChanged: sliderProperties.handleVerticalOffset = value
                                 }
 
                                 CLabel {
@@ -318,6 +336,12 @@ Window {
                                     CLabel {
                                         text: "Handle Color"
                                     }
+                                }
+
+                                CCheckBox {
+                                    id: snapCheckBox
+                                    text: "Snap Mode"
+                                    onCheckedChanged: sliderProperties.snap = checked
                                 }
                             }
                         }
