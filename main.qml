@@ -55,6 +55,9 @@ Window {
         property color trackColor: "#505050"
         property color progressColor: "#3a4ec4"
         property color handleColor: "#fefefe"
+
+        property bool snap: false
+        property real stepSize: 10
     }
 
     RowLayout {
@@ -80,7 +83,8 @@ Window {
                 endAngle: sliderProperties.endAngle
                 minValue: sliderProperties.minValue
                 maxValue: sliderProperties.maxValue
-                value: 30
+                snap: sliderProperties.snap
+                stepSize: 5
 
                 handleColor: sliderProperties.handleColor
                 trackColor: sliderProperties.trackColor
@@ -318,6 +322,12 @@ Window {
                                     CLabel {
                                         text: "Handle Color"
                                     }
+                                }
+
+                                CCheckBox {
+                                    id: snapCheckBox
+                                    text: "Snap Mode"
+                                    onCheckedChanged: sliderProperties.snap = checked
                                 }
                             }
                         }
