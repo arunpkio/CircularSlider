@@ -161,6 +161,20 @@ Item {
     */
     readonly property alias pressed: trackMouse.pressed
 
+    /*!
+        \qmlproperty CircularSlider::hideTrack
+        This property holds weather the track should be shown or not.
+        The default value is false.
+    */
+    property bool hideTrack: false
+
+    /*!
+        \qmlproperty CircularSlider::hideProgress
+        This property holds weather the progress should be shown or not.
+        The default value is false.
+    */
+    property bool hideProgress: false
+
     implicitWidth: 250
     implicitHeight: 250
 
@@ -207,18 +221,18 @@ Item {
         }
     }
 
-    // Dial Shapes
+    // Track Shapes
     Shape {
-        id: shape
+        id: trackShape
 
         width: control.width
         height: control.height
         layer.enabled: true
         layer.samples: 8
-        clip: false
+        visible: !control.hideTrack
 
         ShapePath {
-            id: trackShape
+            id: trackShapePath
 
             strokeColor: control.trackColor
             fillColor: internal.transparentColor
@@ -234,9 +248,20 @@ Item {
                 sweepAngle: internal.actualSpanAngle
             }
         }
+    }
+
+    // Progress Shape
+    Shape {
+        id: progressShape
+
+        width: control.width
+        height: control.height
+        layer.enabled: true
+        layer.samples: 8
+        visible: !control.hideProgress
 
         ShapePath {
-            id: progressShape
+            id: progressShapePath
 
             strokeColor: control.progressColor
             fillColor: internal.transparentColor
@@ -258,7 +283,7 @@ Item {
         anchors.fill: parent
         onClicked: {
             var outerRadius = Math.min(control.width, control.height)/ 2
-            var innerRadius = outerRadius - control.trackWidth;
+            var innerRadius = outerRadius - Math.max(control.trackWidth, 20);
             var clickedDistance = (mouseX - internal.centerPt.x) * (mouseX - internal.centerPt.x) + (mouseY - internal.centerPt.y) * (mouseY - internal.centerPt.y);
             var innerRadius2 = (innerRadius * innerRadius);
             var outerRadius2 = (outerRadius * outerRadius);
