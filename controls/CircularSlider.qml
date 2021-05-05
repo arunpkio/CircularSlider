@@ -161,6 +161,20 @@ Item {
     */
     readonly property alias pressed: trackMouse.pressed
 
+    /*!
+        \qmlproperty CircularSlider::hideTrack
+        This property holds weather the track should be shown or not.
+        The default value is false.
+    */
+    property bool hideTrack: false
+
+    /*!
+        \qmlproperty CircularSlider::hideProgress
+        This property holds weather the progress should be shown or not.
+        The default value is false.
+    */
+    property bool hideProgress: false
+
     implicitWidth: 250
     implicitHeight: 250
 
@@ -215,7 +229,7 @@ Item {
         height: control.height
         layer.enabled: true
         layer.samples: 8
-        clip: false
+        visible: !control.hideTrack
 
         ShapePath {
             id: trackShapePath
@@ -244,6 +258,7 @@ Item {
         height: control.height
         layer.enabled: true
         layer.samples: 8
+        visible: !control.hideProgress
 
         ShapePath {
             id: progressShapePath

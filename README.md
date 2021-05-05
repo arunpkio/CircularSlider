@@ -23,3 +23,5 @@ Following is the list of properties of the Circular Slider.
 - snap
 - handle [Component]
 - pressed [readonly]
+- hideTrack
+- hideProgress
