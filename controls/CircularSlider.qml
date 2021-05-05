@@ -207,9 +207,9 @@ Item {
         }
     }
 
-    // Dial Shapes
+    // Track Shapes
     Shape {
-        id: shape
+        id: trackShape
 
         width: control.width
         height: control.height
@@ -218,7 +218,7 @@ Item {
         clip: false
 
         ShapePath {
-            id: trackShape
+            id: trackShapePath
 
             strokeColor: control.trackColor
             fillColor: internal.transparentColor
@@ -234,9 +234,19 @@ Item {
                 sweepAngle: internal.actualSpanAngle
             }
         }
+    }
+
+    // Progress Shape
+    Shape {
+        id: progressShape
+
+        width: control.width
+        height: control.height
+        layer.enabled: true
+        layer.samples: 8
 
         ShapePath {
-            id: progressShape
+            id: progressShapePath
 
             strokeColor: control.progressColor
             fillColor: internal.transparentColor
