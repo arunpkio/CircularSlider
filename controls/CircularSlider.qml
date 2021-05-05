@@ -258,7 +258,7 @@ Item {
         anchors.fill: parent
         onClicked: {
             var outerRadius = Math.min(control.width, control.height)/ 2
-            var innerRadius = outerRadius - control.trackWidth;
+            var innerRadius = outerRadius - Math.max(control.trackWidth, 20);
             var clickedDistance = (mouseX - internal.centerPt.x) * (mouseX - internal.centerPt.x) + (mouseY - internal.centerPt.y) * (mouseY - internal.centerPt.y);
             var innerRadius2 = (innerRadius * innerRadius);
             var outerRadius2 = (outerRadius * outerRadius);
