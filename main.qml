@@ -46,6 +46,7 @@ Window {
         property int handleWidth: 22
         property int handleHeight: 22
         property int handleRadius: 11
+        property int handleVerticalOffset: 0
 
         property real startAngle: 0
         property real endAngle: 360
@@ -78,6 +79,7 @@ Window {
                 handleWidth: sliderProperties.handleWidth
                 handleHeight: sliderProperties.handleHeight
                 handleRadius: sliderProperties.handleRadius
+                handleVerticalOffset: sliderProperties.handleVerticalOffset
 
                 startAngle: sliderProperties.startAngle
                 endAngle: sliderProperties.endAngle
@@ -186,6 +188,18 @@ Window {
                                     to: 50
                                     value: sliderProperties.handleRadius
                                     onValueChanged: sliderProperties.handleRadius = value
+                                }
+
+                                CLabel {
+                                    text: "Handle Offset"
+                                }
+
+                                CSlider {
+                                    Layout.fillWidth: true
+                                    from: -30
+                                    to: 30
+                                    value: sliderProperties.handleVerticalOffset
+                                    onValueChanged: sliderProperties.handleVerticalOffset = value
                                 }
 
                                 CLabel {

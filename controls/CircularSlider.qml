@@ -61,6 +61,12 @@ Item {
     property int handleRadius: 11
 
     /*!
+        \qmlproperty CircularSlider::handleVerticalOffset
+        This property defines the offset in which the handle should be placed.
+     */
+    property int handleVerticalOffset: 0
+
+    /*!
         \qmlproperty real CircularSlider::startAngle
         This property holds the start angle of the slider.
         The range is from \c 0 degrees to \c 360 degrees.
@@ -104,45 +110,47 @@ Item {
     readonly property real angle: internal.mapFromValue(control.minValue, control.maxValue, control.startAngle, control.endAngle, control.value)
 
     /*!
-      \qmlproperty enumeration CircularSlider::capStyle
-      This property defines how the end points of lines are drawn. The default value is Qt.RoundCap.
+        \qmlproperty enumeration CircularSlider::capStyle
+        This property defines how the end points of lines are drawn. The default value is Qt.RoundCap.
      */
     property int capStyle: Qt.RoundCap
 
     /*!
-      \qmlproperty real CircularSlider::trackColor
-      This property holds the fill color for the track.
+        \qmlproperty real CircularSlider::trackColor
+        This property holds the fill color for the track.
     */
     property color trackColor: "#505050"
 
     /*!
-      \qmlproperty real CircularSlider::progressColor
-      This property holds the fill color for the progress.
+        \qmlproperty real CircularSlider::progressColor
+        This property holds the fill color for the progress.
     */
     property color progressColor: "#3a4ec4"
 
     /*!
-      \qmlproperty real CircularSlider::handleColor
-      This property holds the fill color for the progress.
+        \qmlproperty real CircularSlider::handleColor
+        This property holds the fill color for the progress.
     */
     property color handleColor: "#fefefe"
 
     /*!
-      \qmlproperty This property holds the step size. The default value is 0.0
-      The step size determines the amount by which the slider's value is increased and decreased when interacted.
-      The step size is only respected when snap is set to value true
+        \qmlproperty CircularSlider::stepSize
+        This property holds the step size. The default value is 0.0
+        The step size determines the amount by which the slider's value is increased and decreased when interacted.
+        The step size is only respected when snap is set to value true
     */
     property real stepSize: 0.1
 
     /*!
-      \qmlproperty This property holds weather the value should be snapped or not.
-      The default value is false.
+        \qmlproperty CircularSlider::snap
+        This property holds weather the value should be snapped or not.
+        The default value is false.
     */
     property bool snap: true
 
     /*!
-      \qmlproperty real CircularSlider::handle
-      This property holds the custom handle of the dial.
+        \qmlproperty real CircularSlider::handle
+        This property holds the custom handle of the dial.
     */
     property Component handle: null
 
@@ -274,7 +282,7 @@ Item {
         antialiasing: true
         transform: [
             Translate {
-                y: -(Math.min(control.width, control.height) / 2) + Math.max(control.trackWidth, control.progressWidth) / 2
+                y: -(Math.min(control.width, control.height) / 2) + Math.max(control.trackWidth, control.progressWidth) / 2 + control.handleVerticalOffset
             },
             Rotation {
                 angle: control.angle
