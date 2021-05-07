@@ -107,7 +107,7 @@ Item {
         This property holds the angle of the handle.
         The range is from \c 0 degrees to \c 360 degrees.
     */
-    readonly property real angle: internal.mapFromValue(control.minValue, control.maxValue, control.startAngle, control.endAngle, control.value)
+    readonly property alias angle: internal.angle
 
     /*!
         \qmlproperty enumeration CircularSlider::capStyle
@@ -146,7 +146,7 @@ Item {
         This property holds weather the value should be snapped or not.
         The default value is false.
     */
-    property bool snap: true
+    property bool snap: false
 
     /*!
         \qmlproperty real CircularSlider::handle
@@ -197,6 +197,7 @@ Item {
         property bool setUpdatedValue: false
         property real angleProxy: control.startAngle
         property real snappedValue: 0.0
+        readonly property real angle: internal.mapFromValue(control.minValue, control.maxValue, control.startAngle, control.endAngle, control.value)
 
         function mapFromValue(inMin, inMax, outMin, outMax, inValue) {
             return (inValue - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
@@ -302,6 +303,8 @@ Item {
 
         x: control.width / 2 - width / 2
         y: control.height / 2 - height / 2
+        // make sure that the slider handle is always on top as we can set custom track or progress items
+        z: 2
         width: control.handleWidth
         height: control.handleHeight
         antialiasing: true
