@@ -47,10 +47,10 @@ calculations.
 # Screenshots
 
 #### Basic Properties
-![ScreenShot](https://github.com/arunpkqt/CircularSlider/blob/Update-Readme/screens/basic_properties.png)
+![ScreenShot](https://github.com/arunpkqt/CircularSlider/blob/main/screens/basic_properties.png)
 
 #### Custom Handles
-![ScreenShot](https://github.com/arunpkqt/CircularSlider/blob/Update-Readme/screens/custom_handles.png)
+![ScreenShot](https://github.com/arunpkqt/CircularSlider/blob/main/screens/custom_handles.png)
 
 #### Custom Progress Indicator
-![ScreenShot](https://github.com/arunpkqt/CircularSlider/blob/Update-Readme/screens/custom_progress.png)
+![ScreenShot](https://github.com/arunpkqt/CircularSlider/blob/main/screens/custom_progress.png)
