@@ -1,10 +1,13 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>controls/CircularSlider.qml</file>
+        <file>controls/CCheckBox.qml</file>
         <file>controls/CLabel.qml</file>
         <file>controls/CSlider.qml</file>
-        <file>controls/CCheckBox.qml</file>
         <file>controls/CTabButton.qml</file>
+        <file>controls/CircularSlider.qml</file>
+        <file>main.qml</file>
+        <file>pages/BasicPropertiesPage.qml</file>
+        <file>pages/CustomHandlePage.qml</file>
+        <file>pages/CustomTrackAndProgressPage.qml</file>
     </qresource>
 </RCC>
