@@ -21,11 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ************************************************************************************/
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick 2.14
+import QtQuick.Controls 2.14
 import QtQuick.Dialogs 1.3
-import QtQuick.Layouts 1.15
-import QtQuick.Shapes 1.15
+import QtQuick.Layouts 1.14
+import QtQuick.Shapes 1.14
 import QtGraphicalEffects 1.0
 
 import "../controls"

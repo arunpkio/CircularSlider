@@ -22,10 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ************************************************************************************/
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Shapes 1.15
-import QtQml 2.15
+import QtQuick 2.14
+import QtQuick.Controls 2.14
+import QtQuick.Shapes 1.14
+import QtQml 2.14
 
 Item {
     id: control
@@ -323,7 +323,7 @@ Item {
             id: trackMouse
 
             function getVal() {
-                var handlePoint = mapToItem(control, Qt.point(trackMouse.mouseX, trackMouse.mouseY));
+                var handlePoint = mapToItem(control, trackMouse.mouseX, trackMouse.mouseY);
                 // angle in degrees
                 var angleDeg = Math.atan2(handlePoint.y - internal.centerPt.y, handlePoint.x - internal.centerPt.x) * 180 / Math.PI + 90;
                 internal.updateAngle(angleDeg);
