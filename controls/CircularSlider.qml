@@ -175,6 +175,15 @@ Item {
     */
     property bool hideProgress: false
 
+    /*!
+        \qmlproperty CircularSlider::interactive
+        This property describes whether the user can interact with the Flickable.
+        A user cannot drag the handle or click on the slider that is not interactive.
+        Slider can be used as a progress indicator by setting interactive to false.
+        The default value is true.
+    */
+    property bool interactive: true
+
     implicitWidth: 250
     implicitHeight: 250
 
@@ -282,6 +291,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
+        enabled: control.interactive
         onClicked: {
             var outerRadius = Math.min(control.width, control.height)/ 2
             var innerRadius = outerRadius - Math.max(control.trackWidth, 20);
@@ -300,6 +310,7 @@ Item {
     // Handle Item
     Item {
         id: handleItem
+        visible: control.interactive
 
         x: control.width / 2 - width / 2
         y: control.height / 2 - height / 2
@@ -321,6 +332,7 @@ Item {
 
         MouseArea {
             id: trackMouse
+            enabled: control.interactive
 
             function getVal() {
                 var handlePoint = mapToItem(control, trackMouse.mouseX, trackMouse.mouseY);
