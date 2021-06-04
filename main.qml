@@ -57,6 +57,9 @@ ApplicationWindow {
         CTabButton {
             text: "Custom Track and Progress"
         }
+        CTabButton {
+            text: "Slider As Progress Indicator"
+        }
     }
 
     StackLayout {
@@ -71,6 +74,8 @@ ApplicationWindow {
         }
         CustomTrackAndProgressPage {
             id: activityTab
+        }
+        NonInteractiveSliderAsProgressIndicator {
         }
     }
 

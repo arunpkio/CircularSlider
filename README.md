@@ -58,6 +58,9 @@ calculations.
 #### Custom Progress Indicator
 ![ScreenShot](https://github.com/arunpkqt/CircularSlider/blob/main/screens/custom_progress.png)
 
+#### Slider as Progress Indicator
+![ScreenShot](https://github.com/arunpkqt/CircularSlider/blob/main/screens/progress_indicator.png)
+
 
 # Building Demo
 
