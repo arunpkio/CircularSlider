@@ -9,5 +9,6 @@
         <file>pages/BasicPropertiesPage.qml</file>
         <file>pages/CustomHandlePage.qml</file>
         <file>pages/CustomTrackAndProgressPage.qml</file>
+        <file>pages/NonInteractiveSliderAsProgressIndicator.qml</file>
     </qresource>
 </RCC>
