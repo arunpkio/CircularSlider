@@ -28,6 +28,7 @@ More details can be found here at my blog https://arunpkqt.wordpress.com/2021/05
 - hideTrack
 - hideProgress
 - interactive
+- cursorShape
 
 
 # Components
@@ -44,8 +45,6 @@ slider track with a given minimum width.
 - A QtObject which is used to hide the internal details of the component from outside. This is
 the object inside which we hide all the internal properties and functions which are used for
 calculations.
-
-- Support to hide handle and use Slier as a progress indicator by setting property interactive to false.
 
 
 # Screenshots

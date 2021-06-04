@@ -184,6 +184,14 @@ Item {
     */
     property bool interactive: true
 
+    /*!
+        \qmlproperty CircularSlider::interactive
+        This property holds the cursor shape for this mouse area.
+        On platforms that do not display a mouse cursor this may have no effect.
+        The default value is Qt.ArrowCursor.
+    */
+    property alias cursorShape: trackMouse.cursorShape
+
     implicitWidth: 250
     implicitHeight: 250
 
@@ -344,7 +352,7 @@ Item {
             anchors.fill: parent
             onPositionChanged: getVal()
             onClicked: getVal()
-            cursorShape: Qt.SizeAllCursor
+            cursorShape: Qt.ArrowCursor
         }
 
         Loader {
