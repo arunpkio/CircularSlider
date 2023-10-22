@@ -63,11 +63,6 @@ calculations.
 
 
 # Building Demo
-
-#### Using QMake
-    cd CircularSlider
-    qmake && make
-
 #### Using CMake
     cd CircularSlider
     cmake .
