@@ -22,10 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ************************************************************************************/
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Dialogs 1.3
-import QtQuick.Layouts 1.14
+import QtQuick
+import QtQuick.Dialogs
+import QtQuick.Controls
+import QtQuick.Layouts
+import Qt.labs.platform as LAB
 
 import "../controls"
 
@@ -253,7 +254,7 @@ Item {
                                         radius: 5
                                         color: sliderProperties.trackColor
 
-                                        ColorDialog {
+                                        LAB.ColorDialog {
                                             id: colorDialog
                                             title: "Please choose a color"
                                             property var callFunc
@@ -286,7 +287,7 @@ Item {
                                         radius: 5
                                         color: sliderProperties.progressColor
 
-                                        ColorDialog {
+                                        LAB.ColorDialog {
                                             id: colorDialog2
                                             title: "Please choose a color"
                                             property var callFunc
@@ -319,7 +320,7 @@ Item {
                                         radius: 5
                                         color: sliderProperties.handleColor
 
-                                        ColorDialog {
+                                        LAB.ColorDialog {
                                             id: colorDialog3
                                             title: "Please choose a color"
                                             property var callFunc
